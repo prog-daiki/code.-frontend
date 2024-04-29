@@ -1,6 +1,4 @@
-export const config = {
-  runtime: "experimental-edge",
-};
+export const runtime = "experimental-edge";
 
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
