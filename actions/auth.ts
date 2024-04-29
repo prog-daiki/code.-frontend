@@ -15,18 +15,17 @@ export const signIn = async () => {
   if (data.url) {
     redirect(data.url);
   }
+
+  redirect("/");
 };
 
 export const signOut = async () => {
   const supabase = createClient();
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
-    options: {
-      redirectTo: "http://localhost:3000/auth/callback",
-    },
-  });
+  const { error } = await supabase.auth.signOut();
 
-  if (data.url) {
-    redirect(data.url);
+  if (error) {
+    throw new Error(error.message);
   }
+
+  redirect("/");
 };
